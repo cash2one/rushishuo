@@ -1,0 +1,174 @@
+{% extends "layout_2_col.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block navigation %}
+    {% include "partials/nav_primary.html" %}
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+    <div class="hero-bg">
+      <div class="color-overlay"></div>
+      <ul class="web">
+        <!--<li style="background-image: url({% static "img/bg1.jpg" %})"></li>
+        <li style="background-image: url({% static "img/bg2.jpg" %})"></li>-->
+        <li style="background-image: url({% static "img/bg3.jpg" %})"></li>
+      </ul>
+      <div class="hero-fader">
+        <div class="aligned-container">
+          <div class="container">
+              <div class="typing-block">
+            红烧牛腩饭: <span class="typed"></span>
+          </div>
+            <!--<h1>Flexy – perfect for startups </h1>
+
+            <p class="margin-bottom margin-top">Promote your business effectively
+              <br> Flexy - awesome multifunctional landing page. All that you need to promote your business.
+            </p>-->
+
+            <a href="#" class="btn btn-primary-outline" style="margin-top: 100px">现在购买</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main class="content main-animation">
+
+      <!-- ***** ICONS ***** -->
+      <section class="icons-block margin-top-2x" id="features">
+
+        <div class="container">
+          <div class="text-center">
+            <h2 class="block-header">如食说向您
+              <span>承诺</span>
+            </h2>
+            <span class="subtitle">我们在菜品上精益求精,在材料上精挑细选,在烹饪上如工匠般雕琢,为您呈现最好的菜肴</span>
+          </div>
+
+          <div class="row text-center">
+            <div class="col-md-3 col-xs-6">
+              <i class="icon-cutlery fa-4x"></i>
+              <h4>
+                <strong>好吃</strong>
+              </h4>
+              <p class="text-center">特别特别特别特别特别的好吃.相信我.我是吃货.
+              </p>
+            </div>
+
+            <div class="col-md-3 col-xs-6">
+              <i class="icon-smile fa-4x"></i>
+              <h4>
+                <strong>好看</strong>
+              </h4>
+              <p class="text-center">特别特别特别特别特别的好吃.相信我.我是吃货..
+              </p>
+            </div>
+
+            <div class="col-md-3 col-xs-6">
+              <i class="icon-pencils fa-4x"></i>
+              <h4>
+                <strong>好用</strong>
+              </h4>
+              <p class="text-center">特别特别特别特别特别的好吃.相信我.我是吃货.
+              </p>
+            </div>
+
+            <div class="col-md-3 col-xs-6">
+              <i class="icon-target fa-4x"></i>
+              <h4>
+                <strong>好玩</strong>
+              </h4>
+              <p class="text-center">特别特别特别特别特别的好吃.相信我.我是吃货.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ***** HORIZONTAL TABS ***** -->
+        <!--
+      <section class="tabs-horizontal margin-top margin-bottom-2x">
+        <div class="container text-center">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#tab1" data-toggle="tab">Prototype</a>
+            </li>
+            <li>
+              <a href="#tab2" data-toggle="tab">UI Design</a>
+            </li>
+            <li>
+              <a href="#tab3" data-toggle="tab">Final Project</a>
+            </li>
+          </ul>
+
+          <div class="row">
+            <!-- Tab panes -->
+        <!--
+            <div class="tab-content margin-top-2x">
+              <div class="tab-pane fade in active" id="tab1">
+                <div class="col-md-6 animated fadeInLeft">
+                  <img src="{% static "img/tabs/horizontal/1.jpg" %}" alt="">
+                </div>
+
+                <div class="col-md-6 text-left animated fadeInRight">
+                  <h2 class="color">All that you need -
+                    <span>in Flexy!</span>
+                  </h2>
+                  <span class="subtitle">Flexy - awesome multifunctional landing page</span>
+
+                  <p>Lorem ipsum dolor sit amet, conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                  <p class="margin-bottom">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+                  <a href="#" class="btn btn-primary">Get template</a>
+                  <a href="#" class="btn btn-primary-outline button-margin">See more</a>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="tab2">
+                <div class="col-md-6 animated fadeInLeft">
+                  <img src="img/tabs/horizontal/2.jpg" alt="">
+                </div>
+
+                <div class="col-md-6 text-left animated fadeInRight">
+                  <h2 class="color">All that you need -
+                    <span>in Flexy!</span>
+                  </h2>
+                  <span class="subtitle">Flexy - awesome multifunctional landing page</span>
+
+                  <p>Lorem ipsum dolor sit amet, conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                  <p class="margin-bottom">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+                  <a href="#" class="btn btn-primary">Get template</a>
+                  <a href="#" class="btn btn-primary-outline button-margin">See more</a>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="tab3">
+                <div class="col-md-6 animated fadeInLeft">
+                  <img src="img/tabs/horizontal/3.jpg" alt="">
+                </div>
+
+                <div class="col-md-6 text-left animated fadeInRight">
+                  <h2 class="color">All that you need -
+                    <span>in Flexy!</span>
+                  </h2>
+                  <span class="subtitle">Flexy - awesome multifunctional landing page</span>
+
+                  <p>Lorem ipsum dolor sit amet, conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                  <p class="margin-bottom">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+                  <a href="#" class="btn btn-primary">Get template</a>
+                  <a href="#" class="btn btn-primary-outline button-margin">See more</a>
+                </div>
+              </div>
+            </div>
+            <!-- Tab panes -->
+        <!--
+          </div>
+        </div>
+      </section>-->
+    </main>
+{% endblock content %}

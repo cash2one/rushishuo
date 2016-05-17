@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load promotion_tags %}
+
+{% block styles %}
+    {% comment %}
+        If you are developing Oscar's CSS, or overriding Oscar's CSS
+        files in your project, then set USE_LESS = True in your
+        settings file. This will enable the on-the-fly less compiler.
+    {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" />
+    <link class="color-scheme" href="{% static "css/colors/green.css" %}" rel="stylesheet" media="screen">
+    <script src="{% static "js/libs/modernizr.custom.js" %}"></script>
+    <script src="{% static "js/libs/detectizr.min.js" %}"></script>
+
+{% endblock %}
+
+{% block layout %}
+    <div class="wrapper">
+    {# Site logo/title, mini-basket, browse dropdown and searchbox #}
+    <header class="header header-animated">
+        {% block navigation %}
+            {% include "partials/nav_primary.html" %}
+        {% endblock %}
+    </header>
+
+    {# Main content of page - other layout templates may override this block #}
+    {% block content_wrapper %}
+
+    {% endblock %}
+
+    {% include "partials/footer.html" %}
+    </div>
+{% endblock %}
+
+{# Local scripts #}
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static "js/libs/jquery-1.11.1.min.js" %}"></script>
+    <script src="{% static "js/plugins/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/plugins/jquery.stellar.min.js" %}"></script>
+    <script src="{% static "js/plugins/smoothscroll.js" %}"></script>
+    <script src="{% static "js/plugins/jquery.prettyPhoto.min.js" %}"></script>
+    <script src="{% static "js/plugins/waypoints.min.js" %}"></script>
+    <script src="{% static "js/plugins/jquery-numerator.min.js" %}"></script>
+    <script src="{% static "js/plugins/jquery.circliful.min.js" %}"></script>
+    <script src="{% static "js/plugins/owl.carousel.min.js" %}"></script>
+    <script src="{% static "js/plugins/typed.min.js" %}"></script>
+    <script src="{% static "js/plugins/icheck.min.js" %}"></script>
+    <script src="{% static "js/plugins/jquery.countdown.min.js" %}"></script>
+    <script src="{% static "js/plugins/jquery.validate.min.js" %}"></script>
+    <script src="{% static "js/custom.js" %}"></script>
+{% endblock %}
+
+
+{% block onbodyload %}
+    {{ block.super }}
+    oscar.init();
+{% endblock %}
