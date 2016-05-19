@@ -16,7 +16,15 @@
             {% block label %}
                 {% if not nolabel and field.widget_type != 'CheckboxInput' %}
                     <label for="{{ field.auto_id }}" class="{% if style|default:"stacked" != 'stacked' %}col-sm-4{% endif%} control-label{% if field.field.required %} required{% endif %}">
-                        {{ field.label|safe }}
+                        {% if field.label == "Email address" %}
+                            邮箱
+                        {% elif field.label == "Password" %}
+                            密码
+                    {% elif field.label == "Confirm password" %}
+                            确认密码
+                    {% else %}
+                            {{ field.label }}
+                            {% endif %}
                     </label>
                 {% endif %}
             {% endblock %}
@@ -36,7 +44,19 @@
 
                     {% block errors %}
                         {% for error in field.errors %}
-                            <span class="error-block"><i class="icon-exclamation-sign"></i> {{ error }}</span>
+                            <span class="error-block"><i class="icon-exclamation-sign"></i>
+                                {% if error == "This field is required." %}
+                                请您填写此项
+                                    {% elif error == "The two password fields didn't match." %}
+                                    您两次输入的密码不符,请重新尝试
+                                    {% elif error == "A user with that email address already exists" %}
+                                    您输入的邮箱已被注册
+                                    {% elif error == "Enter a valid email address." %}
+                                    您输入的邮箱不正确
+                                    {% else %}
+                                    {{ error }}
+                                {% endif %}
+                            </span>
                         {% endfor %}
                     {% endblock %}
 

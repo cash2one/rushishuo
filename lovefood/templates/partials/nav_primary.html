@@ -1,8 +1,9 @@
 {% load staticfiles %}
+    <header class="header header-animated">
 <div class="container">
         <nav class="navbar navbar-default" role="navigation">
           <div class="navbar-header">
-            <a class="logo" href="index.html">
+            <a class="logo" href="/">
               <img src="{% static "img/logo-100.png" %}" data-logo-default="{% static "img/logo-100.png" %}" data-logo-alt="{% static "img/logo-100.png" %}" alt="Rushishuo" />
             </a>
           </div>
@@ -18,7 +19,8 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="navbarMain">
-            <ul class="nav navbar-nav navbar-right">
+                {% if not user.is_authenticated and not "/accounts/login/" in request.get_full_path %}
+                    <ul class="nav navbar-nav navbar-right">
               <li>
                 <a href="" class="btn btn-primary-outline" data-toggle="modal" data-target="#signUp">注册</a>
               </li>
@@ -26,14 +28,24 @@
                 <a href="" data-toggle="modal" data-target="#login">登录</a>
               </li>
             </ul>
-
+                    {% endif %}
+                  {% if user.is_authenticated %}
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="/accounts/profile" class="btn btn-primary-outline">{{ request.user.email }}</a>
+              </li>
+                <li>
+                <a href="/accounts/logout" class="btn btn-sm btn-primary-outline" style="margin-left: 10px">退出</a>
+              </li>
+            </ul>
+            {% endif %}
             <ul class="nav navbar-nav collapsed-color">
 
               <li class="active">
-                <a href="#" class="scroll-up">主页</a>
+                <a href="/" class="scroll-up">主页</a>
               </li>
               <li>
-                <a href="#about" class="scroll">关于我们</a>
+                <a href="/accounts/login" class="scroll">关于我们</a>
               </li>
               <li>
                 <a href="#menu" class="scroll">菜单</a>
@@ -123,3 +135,64 @@
           <!-- .navbar-collapse -->
         </nav>
       </div>
+</header>
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-center form-dialog">
+      <div class="modal-content text-center">
+          <!--
+        <div class="modal-header" style="background-image: url(img/parallax-bg.jpg)">
+          Flexy
+        </div>-->
+        <div class="modal-body">
+          <h3>登录享受 <span>豪华盛宴</span></h3>
+          <span class="subtitle">请输入用户名及密码完成登录</span>
+
+          <form method="post" id="login_form" action="/accounts/login/" class="contact-form form-validate4">
+              {% csrf_token %}
+            <div class="form-group">
+              <input class="form-control input-lg" type="email" id="id_login-username" name="login-username" placeholder="登录邮箱" required autocomplete="off">
+            </div>
+            <div class="form-group">
+              <input type="password" name="login-password" id="id_login-password" class="form-control" placeholder="密码" required autocomplete="off">
+            </div>
+
+            <input class="btn btn-md btn-primary btn-center" name="login_submit" type="submit" value="登录">
+          </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+    <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-center form-dialog">
+      <div class="modal-content text-center">
+          <!--
+        <div class="modal-header" style="background-image: url(img/parallax-bg.jpg)">
+          如食说
+        </div>-->
+        <div class="modal-body">
+          <h3>注册享受<span>豪华盛宴</span></h3>
+          <span class="subtitle">请输入以下信息完成注册</span>
+
+          <form id="register_form" action="/accounts/login/" method="post" class="contact-form form-validate3">
+              {% csrf_token %}
+            <div class="form-group">
+              <input class="form-control input-lg" id="id_registration-email" name="registration-email" type="email" placeholder="邮箱" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <input type="password" name="registration-password1" id="id_registration-password1" class="form-control" placeholder="密码" required autocomplete="off">
+            </div>
+              <div class="form-group">
+              <input type="password" name="registration-password2" id="id_registration-password2" class="form-control" placeholder="确认密码" required autocomplete="off">
+            </div>
+
+            <input class="btn btn-md btn-primary btn-center" name="registration_submit" type="submit" value="注册">
+          </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>

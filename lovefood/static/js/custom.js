@@ -1,3 +1,4 @@
+////////////////////////////////////////////////////////////////////
 /*
  * Flexy HTML5 Multipurpose Theme v1.8
  * Copyright 2015 8Guild.com
@@ -136,7 +137,7 @@ $(document).ready(function() {
     $(this).toggleClass('open');
   });
 
-  // Auto typing init
+  // Auto Typing
   $(".typed").typed({
     strings: ["精选肥牛肚腩", "萃取番茄精华", "高汤熬制以入味", "文火慢炖以溢香"],
     typeSpeed: 200, // typing speed
@@ -145,6 +146,51 @@ $(document).ready(function() {
     loopCount: false, // number of loops, false = infinite
     callback: function() {} // call function after typing is done
   });
+
+  var slider = {
+  currentSlide: 0,
+  currentTitle: 0,
+  timeOut: 3000,
+  pred2: true,
+  offset: 0,
+  selector: '.web',
+  currentCls: "current",
+  countItems: 0,
+  titleSelector: '',
+  titleActive: '',
+
+  bgSlider: function(countItems) {
+    var me = this;
+    me.countItems = countItems || me.countItems;
+    me._next();
+    me._timeoutId = setTimeout(function() {
+      me.bgSlider();
+    }, me.timeOut);
+  },
+  _next: function() {
+    var me = this;
+    if (me.currentSlide === me.countItems) {
+      me.currentSlide = 1;
+    } else {
+      me.currentSlide++;
+    }
+    me.doSlide();
+  },
+  nextSlide: function() {
+    var me = this;
+    clearTimeout(me._timeoutId);
+    me.bgSlider();
+  },
+  doSlide: function() {
+    var me = this;
+    // background
+    $(me.selector + " li").removeClass(me.currentCls);
+    $(me.selector + " li:nth-child(" + me.currentSlide + ")").addClass(me.currentCls);
+    // title
+    $(me.titleSelector).removeClass(me.titleActive);
+    $(me.titleSelector + ":nth-child(" + me.currentSlide + ")").addClass(me.titleActive);
+  }
+};
 
   // Modal vertical alignment
   function adjustModalMaxHeightAndPosition() {
@@ -221,7 +267,7 @@ $(document).ready(function() {
     } else {
       if (currentTab.prev().length) {
         currentTab.prev().find('a').click();
-      } else {} //do nothing for now 
+      } else {} //do nothing for now
     }
   }
 
@@ -282,7 +328,8 @@ $(document).ready(function() {
   }, 2000);
 
 
-  //Enable Touch / swipe events for carousel 
+
+  //Enable Touch / swipe events for carousel
   $(".carousel-inner").swipe({
     //Generic swipe handler for all directions
     swipeRight: function(event, direction, distance, duration, fingerCount) {
@@ -348,7 +395,7 @@ $(document).ready(function() {
 
 
 
-// DOCUMENT READY END 
+// DOCUMENT READY END
 //--------------------------------------------------------
 
 
@@ -382,51 +429,74 @@ var countNumb = (function() {
 
 })();
 
-/*Intro Fullscreen Slideshow Function*/
-var slider = {
-  currentSlide: 0,
-  currentTitle: 0,
-  timeOut: 3000,
-  pred2: true,
-  offset: 0,
-  selector: '.web',
-  currentCls: "current",
-  countItems: 0,
-  titleSelector: '',
-  titleActive: '',
 
-  bgSlider: function(countItems) {
-    var me = this;
-    me.countItems = countItems || me.countItems;
-    me._next();
-    me._timeoutId = setTimeout(function() {
-      me.bgSlider();
-    }, me.timeOut);
-  },
-  _next: function() {
-    var me = this;
-    if (me.currentSlide === me.countItems) {
-      me.currentSlide = 1;
-    } else {
-      me.currentSlide++;
-    }
-    me.doSlide();
-  },
-  nextSlide: function() {
-    var me = this;
-    clearTimeout(me._timeoutId);
-    me.bgSlider();
-  },
-  doSlide: function() {
-    var me = this;
-    // background
-    $(me.selector + " li").removeClass(me.currentCls);
-    $(me.selector + " li:nth-child(" + me.currentSlide + ")").addClass(me.currentCls);
-    // title
-    $(me.titleSelector).removeClass(me.titleActive);
-    $(me.titleSelector + ":nth-child(" + me.currentSlide + ")").addClass(me.titleActive);
+// GOOGLE MAPS API
+//-----------------------------------------------------------
+google.maps.event.addDomListener(window, 'load', init);
+
+function init() {
+  var mapOptions = {
+    zoom: 13,
+    scrollwheel: false,
+    center: new google.maps.LatLng(46.483410, 30.722602), // Odessa
+    styles: [{
+      "featureType": "water",
+      "stylers": [{
+        "color": "#46bcec"
+      }, {
+        "visibility": "on"
+      }]
+    }, {
+      "featureType": "landscape",
+      "stylers": [{
+        "color": "#f2f2f2"
+      }]
+    }, {
+      "featureType": "road",
+      "stylers": [{
+        "saturation": -100
+      }, {
+        "lightness": 45
+      }]
+    }, {
+      "featureType": "road.highway",
+      "stylers": [{
+        "visibility": "simplified"
+      }]
+    }, {
+      "featureType": "road.arterial",
+      "elementType": "labels.icon",
+      "stylers": [{
+        "visibility": "off"
+      }]
+    }, {
+      "featureType": "administrative",
+      "elementType": "labels.text.fill",
+      "stylers": [{
+        "color": "#444444"
+      }]
+    }, {
+      "featureType": "transit",
+      "stylers": [{
+        "visibility": "off"
+      }]
+    }, {
+      "featureType": "poi",
+      "stylers": [{
+        "visibility": "off"
+      }]
+    }]
+  };
+
+  if ($('#map').length > 0) {
+    var mapElement = document.getElementById('map');
+    var map = new google.maps.Map(mapElement, mapOptions);
+
   }
-};
+}
+
+
+/*Intro Fullscreen Slideshow Function*/
 
 ////////////////////////////////////////////////////////////
 //INTERNAL ANCHOR LINKS SCROLLING (NAVIGATION)

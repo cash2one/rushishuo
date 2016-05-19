@@ -18,11 +18,9 @@
 {% block layout %}
     <div class="wrapper">
     {# Site logo/title, mini-basket, browse dropdown and searchbox #}
-    <header class="header header-animated">
         {% block navigation %}
             {% include "partials/nav_primary.html" %}
         {% endblock %}
-    </header>
 
     {# Main content of page - other layout templates may override this block #}
     {% block content_wrapper %}
