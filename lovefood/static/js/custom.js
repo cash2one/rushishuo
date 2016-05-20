@@ -429,7 +429,7 @@ var countNumb = (function() {
 
 })();
 
-
+/*
 // GOOGLE MAPS API
 //-----------------------------------------------------------
 google.maps.event.addDomListener(window, 'load', init);
@@ -494,6 +494,8 @@ function init() {
 
   }
 }
+
+*/
 
 
 /*Intro Fullscreen Slideshow Function*/

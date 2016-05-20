@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout1.html" %}
 
 {% load history_tags %}
 {% load currency_filters %}
@@ -13,40 +13,15 @@
     {{ product.title }} | {{ block.super }}
 {% endblock %}
 
-{% block description %}
-    {{ product.description|default:""|striptags }}
-{% endblock %}
-
-{% block breadcrumbs %}
-<ul class="breadcrumb">
-    <li>
-        <a href="{{ homepage_url }}">{% trans "Home" %}</a>
-    </li>
-    {% with category=product.categories.all.0 %}
-        {% for c in category.get_ancestors_and_self %}
-        <li>
-            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        </li>
-        {% endfor %}
-        <li class="active">{{ product.title }}</li>
-
-        {% get_back_button as backbutton %}
-        {% if backbutton %}
-            <li class="pull-right">
-                <a href="{{ backbutton.url }}">
-                    <i class="icon-arrow-left"></i> {{ backbutton.title }}
-                </a>
-            </li>
-        {% endif %}
-    {% endwith %}
-</ul>
-{% endblock %}
 
 {% block header %}
 {% endblock header %}
 
-{% block content %}
-
+{% block content_wrapper %}
+<div class="wrapper">
+<main class="content">
+    <div class="container margin-top-3x margin-bottom-2x">
+    <div class="row">
 <article class="product_page"><!-- Start of product page -->
 
     <div class="row">
@@ -60,12 +35,10 @@
         {% block product_main %}
         <div class="col-sm-6 product_main">
             {% comment %}
-            This is a but clunky here.  Better to have some kind of JS-driven dashboard menu that 
+            This is a but clunky here.  Better to have some kind of JS-driven dashboard menu that
             pops out when clicked.  A bit like the Django-Debug-Toolbar button
             {% endcomment %}
-            {% if user.is_authenticated and user.is_staff %}
-                <a class="pull-right hidden-xs" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
-            {% endif %}
+
             <h1>{{ product.get_title }}</h1>
 
             {% block product_stock_record %}
@@ -194,7 +167,11 @@
     {% recently_viewed_products current_product=product %}
 
 </article><!-- End of product page -->
-{% endblock content %}
+    </div>
+</div>
+</main>
+</div>
+{% endblock content_wrapper %}
 
 {% block extrascripts %}
     {{ block.super }}

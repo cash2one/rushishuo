@@ -19,7 +19,7 @@
     <div class="wrapper">
     {# Site logo/title, mini-basket, browse dropdown and searchbox #}
         {% block navigation %}
-            {% include "partials/nav_primary.html" %}
+            {% include "partials/nav_accounts.html" %}
         {% endblock %}
 
     {# Main content of page - other layout templates may override this block #}
@@ -52,4 +52,5 @@
     <script src="{% static "js/plugins/jquery.validate.min.js" %}"></script>
     <script src="{% static "js/custom.js" %}"></script>
 {% endblock %}
+
 

@@ -32,23 +32,23 @@
                 {% if user.is_authenticated %}
                   <ul class="nav navbar-nav navbar-right">
               <li>
-                <a href="" class="btn btn-primary-outline">{{ request.user.email }}</a>
+                <a href="/accounts/profile" class="btn btn-primary-outline">{{ request.user.email }}</a>
               </li>
                 <li>
-                <a href="{{ request.get_current_path }}accounts/logout" class="btn btn-sm btn-primary-outline" style="margin-left: 10px">退出</a>
+                <a href="/accounts/logout" class="btn btn-sm btn-primary-outline" style="margin-left: 10px">退出</a>
               </li>
             </ul>
             {% endif %}
             <ul class="nav navbar-nav collapsed-color">
 
               <li class="active">
-                <a href="/" class="scroll-up">主页</a>
+                <a href="/">主页</a>
               </li>
               <li>
-                <a href="#about" class="scroll">关于我们</a>
+                <a href="/accounts/login">关于我们</a>
               </li>
               <li>
-                <a href="#menu" class="scroll">菜单</a>
+                <a href="/catalogue">菜单</a>
               </li>
               <li>
                 <a href="#gallery" class="scroll">相册</a>
@@ -56,80 +56,6 @@
               <li>
                 <a href="#feedback" class="scroll">联系我们</a>
               </li>
-                <!--
-              <li class="dropdown">
-                <a href="" class="dropdown-toggle" data-toggle="dropdown">Portfolio<i class="fa fa-angle-down"></i></a>
-
-                <ul class="dropdown-menu animated fadeInUp" role="menu">
-                  <li>
-                    <a href="portfolio1.html">Masonry 1</a>
-                  </li>
-                  <li>
-                    <a href="portfolio2.html">Masonry 2</a>
-                  </li>
-                  <li>
-                    <a href="portfolio3.html">Grid 1 column</a>
-                  </li>
-                  <li>
-                    <a href="portfolio4.html">Grid 2 columns</a>
-                  </li>
-                  <li>
-                    <a href="portfolio5.html">Grid 3 columns</a>
-                  </li>
-                  <li>
-                    <a href="portfolio6.html">Grid 4 columns</a>
-                  </li>
-                  <li>
-                    <a href="portfolio_item.html">Item</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="dropdown">
-                 <a href="" class="dropdown-toggle" data-toggle="dropdown">Pages<i class="fa fa-angle-down"></i></a>
-
-                <ul class="dropdown-menu animated fadeInUp" role="menu">
-                  <li>
-                    <a href="blog.html">Blog</a>
-                  </li>
-                  <li>
-                    <a href="post.html">Blog One Post</a>
-                  </li>
-                  <li>
-                    <a href="aboutUs.html">About Us</a>
-                  </li>
-                  <li>
-                    <a href="aboutUs2.html">About Us II</a>
-                  </li>
-                  <li>
-                    <a href="ourTeam.html">Our Team</a>
-                  </li>
-                  <li>
-                    <a href="teamMember.html">Team Member</a>
-                  </li>
-                  <li>
-                    <a href="pricing.html">Pricing</a>
-                  </li>
-                  <li>
-                    <a href="services.html">Services</a>
-                  </li>
-                  <li>
-                    <a href="comingSoon.html">Coming Soon</a>
-                  </li>
-                  <li>
-                    <a href="Contact.html">Contacts</a>
-                  </li>
-                  <li>
-                    <a href="404.html">404 Error</a>
-                  </li>
-                  <li>
-                    <a href="index.html">Choose Homepage</a>
-                  </li>
-                  <li>
-                    <a href="stylesPage.html">Components &amp; Styles</a>
-                  </li>
-                </ul>
-              </li>-->
             </ul>
           </div>
           <!-- .navbar-collapse -->
