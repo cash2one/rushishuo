@@ -10,29 +10,70 @@
 
 {% block content %}
 
-<div class="wrapper">
-<main class="content">
-        <div class="container margin-top-3x margin-bottom-2x">
-    <div class="row">
-        <div class="col-md-4">
-            <form id="login_form" action="{{ request.get_full_path }}" method="post">
-                <h3 class="page-header">登录</h3>
-                {% csrf_token %}
-                {% include "partials/form_fields.html" with form=login_form %}
-                <p><a href="{% url 'password-reset' %}">忘记密码？</a></p>
-                <button name="login_submit" type="submit" value="Log In" class="btn btn-lg btn-primary" data-loading-text="登录中">登录</button>
-            </form>
-        </div>
-        <div class="col-md-6 col-md-offset-2">
-            <form id="register_form" action="{{ request.get_full_path }}" method="post">
-                <h3 class="page-header">注册</h3>
-                {% csrf_token %}
-                {% include "partials/form_fields.html" with form=registration_form %}
-                <button name="registration_submit" type="submit" value="Register" class="btn btn-lg btn-primary" data-loading-text="注册中">注册</button>
-            </form>
-        </div>
-    </div>
-    </div>
-    </main>
+    <div class="wrapper">
+        <main class="content">
+            <div class="container margin-top-3x margin-bottom-2x">
+                <section class="tabs-horizontal margin-top">
+                    <div class="container text-center">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">登录</a>
+                            </li>
+                            <li>
+                                <a href="#tab2" data-toggle="tab">注册</a>
+                            </li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                {% if registration_form.is_bound and not registration_form.is_valid %}
+                                    <div class="alert alert-danger">
+                                        您输入的注册信息有误，请根据错误提示更正表单重新登录
+                                    </div>
+                                {% endif %}
+                                {% if login_form.is_bound and not login_form.is_valid %}
+                                    <div class="alert alert-danger">
+                                        您输入的登录信息有误，请根据错误提示更正表单。没有账号?点击注册成为会员!
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="tab1">
+                                    <div class="col-md-4 col-md-offset-4">
+                                        <form id="login_form" action="{{ request.get_full_path }}" method="post">
+                                            <h4 class="page-header">请填写登录表格</h4>
+                                            {% csrf_token %}
+                                            {% include "partials/form_fields.html" with form=login_form %}
+                                            <p><a href="{% url 'password-reset' %}">忘记密码？</a></p>
+                                            <button name="login_submit" type="submit" value="Log In"
+                                                    class="btn btn-lg btn-primary" data-loading-text="登录中">登录
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="tab2">
+                                    <div class="col-md-4 col-md-offset-4">
+                                        <form id="register_form" action="{{ request.get_full_path }}" method="post">
+                                            <h4 class="page-header">请填写注册表格</h4>
+                                            {% csrf_token %}
+                                            {% include "partials/form_fields.html" with form=registration_form %}
+                                            <button name="registration_submit" type="submit" value="Register"
+                                                    class="btn btn-lg btn-primary" data-loading-text="注册中">注册
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
     </div>
 {% endblock content %}

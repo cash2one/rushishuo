@@ -53,6 +53,8 @@
                                     您输入的邮箱已被注册
                                     {% elif error == "Enter a valid email address." %}
                                     您输入的邮箱不正确
+                                    {% elif "Ensure this value has at least 6 characters" in error %}
+                                    您的密码必须大于6位数
                                     {% else %}
                                     {{ error }}
                                 {% endif %}
