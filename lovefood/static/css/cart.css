@@ -1,0 +1,110 @@
+/*Color Switcher Styles*/
+/*Copyright 2015 8Guild.com*/
+
+.side-cart {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: -350px;
+
+  width: 350px;
+  margin-top: -152px;
+  padding: 30px;
+
+  -webkit-transition: all 300ms ease-out;
+     -moz-transition: all 300ms ease-out;
+          transition: all 300ms ease-out;
+  text-align: center;
+
+  -webkit-border-radius: 0 0 5px 0;
+     -moz-border-radius: 0 0 5px 0;
+          border-radius: 0 0 5px 0;
+  background-color: #fff;
+
+  border: 1px solid #e9e9e9;
+}
+.side-cart.open {
+  left: 0;
+}
+.side-cart .color {
+  display: inline-block;
+
+  margin: 4px auto 2px auto;
+
+  text-align: center;
+}
+.side-cart .color a {
+  display: inline-block;
+
+  width: 37px;
+  height: 37px;
+  margin-bottom: 3px;
+
+  -webkit-transition: all 300ms ease;
+     -moz-transition: all 300ms ease;
+          transition: all 300ms ease;
+
+  border: 2px solid transparent;
+  background-repeat: no-repeat;
+}
+.side-cart .color span {
+  font-size: 13px;
+  font-weight: normal;
+
+  display: block;
+
+  width: 100%;
+
+  text-align: center;
+
+  color: #fff;
+}
+.side-cart .color a:hover {
+  opacity: .7;
+}
+.side-cart .color a.current {
+  opacity: 1;
+  border: 2px solid #000;
+}
+.side-cart .text-left {
+	border-bottom: 1px solid #e9e9e9;
+}
+.side-cart .toggle {
+  font-size: 2em;
+
+  position: absolute;
+  top: -1px;
+  right: -60px;
+
+  width: 60px;
+  padding: 7px 0;
+
+  cursor: pointer;
+  -webkit-transition: all 300ms ease;
+     -moz-transition: all 300ms ease;
+          transition: all 300ms ease;
+  text-align: center;
+
+  color: #26B04C;
+  -webkit-border-radius: 0 4px 4px 0;
+     -moz-border-radius: 0 4px 4px 0;
+          border-radius: 0 4px 4px 0;
+  background-color: #fff;
+
+  /*box-shadow: 3px 0px 10px -7px #000;*/
+  border: 1px solid #e9e9e9;
+  border-left: none;
+}
+.open.side-cart .toggle {
+  color: #cfcfcf;
+}
+.side-cart .toggle:hover {
+  background-color: #f0f1f2;
+}
+
+
+@media screen and (max-width: 991px) {
+  .side-cart {
+    display: none;
+  }
+}

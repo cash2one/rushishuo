@@ -1,0 +1,138 @@
+/*Color Switcher Styles*/
+/*Copyright 2015 8Guild.com*/
+
+.color-switcher {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: -350px;
+
+  width: 350px;
+  margin-top: -152px;
+  padding: 30px;
+
+  -webkit-transition: all 300ms ease-out;
+     -moz-transition: all 300ms ease-out;
+          transition: all 300ms ease-out;
+  text-align: center;
+
+  -webkit-border-radius: 0 0 5px 0;
+     -moz-border-radius: 0 0 5px 0;
+          border-radius: 0 0 5px 0;
+  background-color: #fff;
+
+  border: 1px solid #e9e9e9;
+}
+.color-switcher.open {
+  left: 0;
+}
+.color-switcher .color {
+  display: inline-block;
+
+  margin: 4px auto 2px auto;
+
+  text-align: center;
+}
+.color-switcher .color a {
+  display: inline-block;
+
+  width: 37px;
+  height: 37px;
+  margin-bottom: 3px;
+
+  -webkit-transition: all 300ms ease;
+     -moz-transition: all 300ms ease;
+          transition: all 300ms ease;
+
+  border: 2px solid transparent;
+  background-repeat: no-repeat;
+}
+.color-switcher .color span {
+  font-size: 13px;
+  font-weight: normal;
+
+  display: block;
+
+  width: 100%;
+
+  text-align: center;
+
+  color: #fff;
+}
+.color-switcher .color a:hover {
+  opacity: .7;
+}
+.color-switcher .color a.current {
+  opacity: 1;
+  border: 2px solid #000;
+}
+.switcher-list-block {
+	width: 50%;
+	float: left;
+}
+.switcher-list-block a {
+	color: #000;
+	text-decoration: none;
+	font-size: 12px;
+	line-height: 1;
+}
+.switcher-list-block h5 {
+	margin: 0;
+	padding-bottom: 10px;
+	margin-right: 10px;
+	border-bottom: 1px solid #e9e9e9;
+}
+.switcher-list-block a:hover, .switcher-list-block li.cur-page a {
+	color: #0893d2;
+}
+.switcher-list-block:first-child {
+	padding-right: 16px;
+}
+.switcher-list-block ul li {
+	padding: 0;
+}
+.switcher-list-block:first-child ul {
+	border-right: 1px solid #e9e9e9;
+}
+.color-switcher .text-left {
+	border-bottom: 1px solid #e9e9e9;
+}
+.color-switcher .toggle {
+  font-size: 2em;
+
+  position: absolute;
+  top: -1px;
+  right: -60px;
+
+  width: 60px;
+  padding: 7px 0;
+
+  cursor: pointer;
+  -webkit-transition: all 300ms ease;
+     -moz-transition: all 300ms ease;
+          transition: all 300ms ease;
+  text-align: center;
+
+  color: #0893d2;
+  -webkit-border-radius: 0 4px 4px 0;
+     -moz-border-radius: 0 4px 4px 0;
+          border-radius: 0 4px 4px 0;
+  background-color: #fff;
+
+  /*box-shadow: 3px 0px 10px -7px #000;*/
+  border: 1px solid #e9e9e9;
+  border-left: none;
+}
+.open.color-switcher .toggle {
+  color: #cfcfcf;
+}
+.color-switcher .toggle:hover {
+  background-color: #f0f1f2;
+}
+
+
+@media screen and (max-width: 991px) {
+  .color-switcher {
+    display: none;
+  }
+}
