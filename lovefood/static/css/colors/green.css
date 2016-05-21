@@ -17,7 +17,7 @@
 	But here we are used rgba color format, to add some trasparency,
 	you can convert it at http://hex2rgba.devoth.com/ */
 .btn-primary:hover, .tabs-horizontal .nav-tabs a:hover, .twin-img-contact, .masonry-grid .item .grid-tile .color-overlay {
-	background-color: rgba(38, 176, 76, .7);
+	background-color: rgba(123, 123, 123, .5);
 }
 
 .filtering .nav-tabs a:hover {

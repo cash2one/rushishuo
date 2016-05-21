@@ -27,9 +27,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'p6+a1d2zszxb1bb)5*xx!su%liot#mm!=yfh=aa68vtzapd7wt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -130,7 +130,6 @@ USE_TZ = True
 
 OSCAR_DEFAULT_CURRENCY = 'CNY'
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -141,3 +140,4 @@ STATICFILES_DIRS = (
 )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "media_root")
+OSCAR_MISSING_IMAGE_URL = MEDIA_URL + 'image_not_found.jpg'

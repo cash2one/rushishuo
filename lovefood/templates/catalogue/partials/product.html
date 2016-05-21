@@ -4,41 +4,40 @@
 {% load display_tags %}
 {% load staticfiles %}
 
+
 {% block product %}
-    <article class="product_pod">
-        {% block product_image %}
-            <div class="image_container">
-                {% with image=product.primary_image %}
-                    {% thumbnail image.original "x155" upscale=False as thumb %}
-                    <a href="{{ product.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="thumbnail"></a>
-                    {% endthumbnail %}
-                {% endwith %}
-            </div>
-        {% endblock %}
 
-        {% block product_review %}
-            {% iffeature "reviews" %}
-                <p class="star-rating {{ product.rating|as_stars }}">
-                    <i class="icon-star"></i>
-                    <i class="icon-star"></i>
-                    <i class="icon-star"></i>
-                    <i class="icon-star"></i>
-                    <i class="icon-star"></i>
-                </p>
-            {% endiffeature %}
-        {% endblock %}
+    <div class="item {{ product.get_product_class.name }}">
+        <div class="grid-tile">
+            <div href="#" class="post-thumb">
+                <div class="color-overlay"></div>
+                {% block product_image %}
+                    {% with image=product.primary_image %}
+                        {% thumbnail image.original "440x400" upscale=False as thumb %}
+                        <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                        {% endthumbnail %}
+                    {% endwith %}
+                    </div>
+                {% endblock %}
 
-        {% block product_title %}
-            <h3><a href="{{ product.get_absolute_url }}" title="{{ product.get_title }}">{{ product.get_title|truncatewords:4 }}</a></h3>
-        {% endblock %}
-
-        {% block product_price %}
-            <div class="product_price">
+            {% block product_title %}
+                <span class="tile-title">
+                      <h3>
+                          {{ product.get_title|truncatewords:4 }}</h3>
+                    {% block product_price %}
+                        <span class="tile-date">
                 {% include "catalogue/partials/stock_record.html" %}
-                {% if not product.is_parent %}
-                    {% include "catalogue/partials/add_to_basket_form_compact.html" %}
-                {% endif %}
-            </div>
-        {% endblock %}
-    </article>
+            </span>
+                    {% endblock %}
+                    <div class="tile-links">
+                        {% if not product.is_parent %}
+
+                            {% include "catalogue/partials/add_to_basket_form_compact.html" %}
+                        {% endif %}
+                        <a href="{{ product.get_absolute_url }}"><i class="fa fa-expand"></i></a>
+                    </div>
+                  </span>
+            {% endblock %}
+        </div>
+    </div>
 {% endblock %}
