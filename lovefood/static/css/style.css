@@ -4371,3 +4371,9 @@ div.milo .fig-links a:hover {
 .hero-bg {
   top: 0;
 }
+
+.vcenter {
+  display: inline-block;
+    vertical-align: middle;
+    float: none;
+}

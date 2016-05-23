@@ -2,11 +2,11 @@
 
 {% if quantity == 1 %}
     {% blocktrans with title=product.get_title %}
-    <strong>{{ title }}</strong> has been added to your basket.
+    <strong>{{ title }}</strong> 已被添加到您的购物车
     {% endblocktrans %}
 {% else %}
     {% blocktrans with title=product.get_title quantity=quantity %}
-    <strong>{{ quantity }}</strong> copies of <strong>{{ title }}</strong>
-    have been added to your basket.
+    <strong>{{ quantity }}份</strong> <strong>{{ title }}</strong>
+    已被添加到您的购物车
     {% endblocktrans %}
 {% endif %}

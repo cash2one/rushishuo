@@ -22,6 +22,8 @@
                             密码
                     {% elif field.label == "Confirm password" %}
                             确认密码
+                    {% elif field.label == "Code" %}
+                            请输入优惠码
                     {% else %}
                             {{ field.label }}
                             {% endif %}

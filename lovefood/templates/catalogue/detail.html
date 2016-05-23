@@ -29,6 +29,7 @@
                                 <div>
                                 <h2><span>{{ product.get_title }}</span></h2>
                                 <hr style="border-color:#d7d7d7">
+                                {% include 'partials/alert_messages.html' %}
                                 {% block product_stock_record %}
                                     {% include "catalogue/partials/stock_record.html" with verbose=1 %}
                                 {% endblock %}

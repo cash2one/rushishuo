@@ -16,7 +16,11 @@
 /*Change this color, to make different background color of elements
 	But here we are used rgba color format, to add some trasparency,
 	you can convert it at http://hex2rgba.devoth.com/ */
-.btn-primary:hover, .tabs-horizontal .nav-tabs a:hover, .twin-img-contact, .masonry-grid .item .grid-tile .color-overlay {
+.btn-primary:hover, .tabs-horizontal .nav-tabs a:hover, .twin-img-contact{
+	background-color: rgba(38, 176, 76, .5);
+}
+
+.masonry-grid .item .grid-tile .color-overlay  {
 	background-color: rgba(123, 123, 123, .5);
 }
 

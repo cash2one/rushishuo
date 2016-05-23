@@ -14,7 +14,6 @@
 {% block headertext %}{{ summary }}{% endblock %}
 
 {% block content %}
-
     <div class="hero-bg portfolio-hero" style="background-image: url({% static "img/bg2.jpg" %})" data-switcher>
         <div class="color-overlay"></div>
 
@@ -56,6 +55,10 @@
                 </li>
             </ul>
         </div>
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4">{% include 'partials/alert_messages.html' %}</div></div>
+
+
         <!-- Portfolio Grid -->
         <section class="margin-top margin-bottom">
             <div class="container">

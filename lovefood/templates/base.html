@@ -63,64 +63,69 @@
 {% block extrascripts %}{% endblock %}
 
 {# Block for body onload functions #}
-
+<script type="text/javascript">
+            $(function() {
+                {% block onbodyload %}{% endblock %}
+            });
+        </script>
 {# Page meta-data - this is populated by the 'metadata' template context processor #}
 <!-- {% trans "Version:" %} {{ version }} -->
 {% if "dashboard" not in request.get_full_path and "basket" not in request.get_full_path %}
-<div class="side-cart group animated">
-    <div class="toggle">
-        <i class="fa fa-shopping-cart"></i>
-    </div>
+    <div class="side-cart group animated">
+        <div class="toggle">
+            <i class="fa fa-shopping-cart"></i>
+        </div>
 
-    <div class="row text-left">
-        <ul class="basket-mini-item list-unstyled">
-            {% if request.basket.num_lines %}
-                {% for line in request.basket.all_lines %}
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="image_container">
-                                    {% with image=line.product.primary_image %}
-                                        {% thumbnail image.original "100x100" upscale=False as thumb %}
-                                            <a href="{{ line.product.get_absolute_url }}"><img class="thumbnail"
-                                                                                               src="{{ thumb.url }}"
-                                                                                               alt="{{ line.product.get_title }}"></a>
-                                        {% endthumbnail %}
-                                    {% endwith %}
+        <div class="row text-left">
+            <ul class="basket-mini-item list-unstyled">
+                {% if request.basket.num_lines %}
+                    {% for line in request.basket.all_lines %}
+                        <li>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="image_container">
+                                        {% with image=line.product.primary_image %}
+                                            {% thumbnail image.original "100x100" upscale=False as thumb %}
+                                                <a href="{{ line.product.get_absolute_url }}"><img class="thumbnail"
+                                                                                                   src="{{ thumb.url }}"
+                                                                                                   alt="{{ line.product.get_title }}"></a>
+                                            {% endthumbnail %}
+                                        {% endwith %}
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p><strong><a
+                                            href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></strong>
+                                    </p>
+                                </div>
+
+                                <div class="col-sm-3 price_color align-right">
+                                    ¥{{ line.unit_price_excl_tax}}</div>
+                                <div class="col-sm-3">{{ line.quantity }}
                                 </div>
                             </div>
-                            <div class="col-sm-5">
-                                <p><strong><a
-                                        href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></strong>
-                                </p>
-                            </div>
-                            <div class="col-sm-1 align-center"><strong>{% trans "Qty" %}</strong> {{ line.quantity }}
-                            </div>
-                            <div class="col-sm-3 price_color align-right">
-                                {{ line.unit_price_excl_tax|currency:request.basket.currency }}</div>
-                        </div>
+                        </li>
+                    {% endfor %}
+                    <li class="form-group form-actions">
+                        <p class="align-right">
+                            {% if request.basket.is_tax_known %}
+                                <small>总计:
+                                    ¥{{ request.basket.total_incl_tax }}</small>
+                            {% else %}
+                                <small>总计:
+                                    ¥{{ request.basket.total_excl_tax }}</small>
+                            {% endif %}
+                        </p>
+                        <a href="{% url 'basket:summary' %}" class="btn btn-info btn-sm">去购物车</a>
+                        <a href="{% url 'checkout:index' %}" class="btn btn-primary btn-sm pull-right"><i
+                                class="icon-shopping-cart"></i>现在结账</a>
                     </li>
-                {% endfor %}
-                <li class="form-group form-actions">
-                    <p class="align-right">
-                        {% if request.basket.is_tax_known %}
-                            <small>{% trans "Total:" %}
-                                {{ request.basket.total_incl_tax|currency:request.basket.currency }}</small>
-                        {% else %}
-                            <small>{% trans "Total:" %}
-                                {{ request.basket.total_excl_tax|currency:request.basket.currency }}</small>
-                        {% endif %}
-                    </p>
-                    <a href="{% url 'basket:summary' %}" class="btn btn-info btn-sm">{% trans "View basket" %}</a>
-                    <a href="{% url 'checkout:index' %}" class="btn btn-primary btn-sm pull-right"><i
-                            class="icon-shopping-cart"></i> {% trans "Checkout" %}</a>
-                </li>
-            {% else %}
-                <li><p>您还没有添加任何商品到购物车哟~</p></li>
-            {% endif %}
-        </ul>
+                {% else %}
+                    <li><p>您还没有添加任何商品到购物车哟~</p></li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-</div>
 {% endif %}
 </body>
 </html>

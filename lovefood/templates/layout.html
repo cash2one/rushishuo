@@ -22,12 +22,11 @@
         {% block navigation %}
             {% include "partials/nav_primary.html" %}
         {% endblock %}
-
     {# Main content of page - other layout templates may override this block #}
     {% block content_wrapper %}
 
     {% endblock %}
-
+    <div id="content_inner">{% block content %}{% endblock %}</div>
     {% include "partials/footer.html" %}
     </div>
 {% endblock %}
@@ -53,5 +52,11 @@
     <script src="{% static "js/plugins/jquery.validate.min.js" %}"></script>
     <script src="{% static "js/plugins/cart.js" %}"></script>
     <script src="{% static "js/custom.js" %}"></script>
+    <script src="{% static "js/oscar/dashboard.js" %}"></script>
+    <script src="{% static "js/oscar/ui.js" %}"></script>
 {% endblock %}
 
+{% block onbodyload %}
+    {{ block.super }}
+    oscar.init();
+{% endblock %}
