@@ -5,6 +5,14 @@
 Keep the same header and footer as the standard layout template but override the 
 main content area to split it into a sidebar and a content block
 {% endcomment %}
+
+
 {% block content_wrapper %}
+    {% block column_left %}{% endblock %}
+{% block header %}
+
+                {% endblock %}
+
+
 {% block content %}{% endblock %}
 {% endblock %}

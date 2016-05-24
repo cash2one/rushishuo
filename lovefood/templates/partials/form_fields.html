@@ -2,16 +2,17 @@
     {% for error in form.non_field_errors %}
         <div class="alert alert-danger">
             <i class="icon-exclamation-sign"></i>
-            {% if error == "Please enter a correct username and password. Note that both fields may be case-sensitive." %}
+            {% if error == "Please enter a correct 用户名 and password. Note that both fields may be case-sensitive." %}
                 您输入的邮箱和密码组合有误，请确认后重新输入。
                 {% else %}
                             {{ error }}
-
             {% endif %}
         </div>
     {% endfor %}
 {% endif %}
 
 {% for field in form %}
+    {% if field.label != "地址第二行" and field.label != "地址第三行" and field.label != "省/县" and field.label != "姓氏" %}
     {% include 'partials/form_field.html' with field=field style=style %}
+    {% endif %}
 {% endfor %}

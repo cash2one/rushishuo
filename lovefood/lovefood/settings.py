@@ -141,3 +141,5 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "media_root")
 OSCAR_MISSING_IMAGE_URL = MEDIA_URL + 'image_not_found.jpg'
+
+OSCAR_REQUIRED_ADDRESS_FIELDS = ('last_name', 'first_name', 'line1', 'city', 'postcode')
