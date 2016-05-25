@@ -1,64 +1,124 @@
 {% load i18n %}
+{% load staticfiles %}
+    <header class="header no-animation">
+<div class="container">
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <a class="logo" href="/">
+              <img src="{% static "img/logo-100.png" %}" data-logo-default="{% static "img/logo-100.png" %}" data-logo-alt="{% static "img/logo-100.png" %}" alt="Rushishuo" />
+            </a>
+          </div>
 
-<div class="navbar navbar-static-top navbar-inverse nav-checkout">
-    <ul class="nav navbar-nav">
-        {% spaceless %}
-            <li class="step1 {% if step == 1 %}active{% else %}{% if step == 2 %}previous{% else %}{% if step > 1 %}visited{% else %}disabled{% endif %}{% endif %}{% endif %} ">
-                {% if step == 2 or step == 3 or step == 4 %}
-                    <a href="{% url 'checkout:shipping-address' %}">
-                        <span class="visible-inline-sm icon-chevron-right"></span>
-                        <span>
-                            {% trans "1. Shipping address" %}
-                        </span>
-                    </a>
-                {% else %}
-                    <span class="navbar-text">
-                        {%  trans "1. Shipping address" %}
-                    </span>
-                {% endif %}
-            </li>
+          <div class="nav-toggle collapsed" data-toggle="collapse" data-target="#navbarMain">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
 
-            <li class="step2 {% if step == 2 %}active{% else %}{% if step == 3 %}previous{% else %}{% if step > 2 %}visited{% else %}disabled{% endif %}{% endif %}{% endif %} ">
-                {% if step == 3 or step == 4 %}
-                    <a href="{% url 'checkout:shipping-method' %}">
-                        <span class="visible-inline-sm icon-chevron-right"></span>
-                        <span>
-                            {% trans "2. Shipping method" %}
-                        </span>
-                    </a>
-                {% else %}
-                    <span class="navbar-text">
-                        {%  trans "2. Shipping method" %}
-                    </span>
-                {% endif %}
-            </li>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbarMain">
+              {% if not user.is_authenticated and not "/accounts/login" in request.get_full_path %}
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="" class="btn btn-primary-outline" data-toggle="modal" data-target="#signUp">注册</a>
+              </li>
+              <li>
+                <a href="" data-toggle="modal" data-target="#login">登录</a>
+              </li>
+            </ul>
+              {% endif %}
+                {% if user.is_authenticated %}
+                  <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="/accounts/profile" class="btn btn-primary-outline">{{ request.user.email }}</a>
+              </li>
+                <li>
+                <a href="/accounts/logout" class="btn btn-sm btn-primary-outline" style="margin-left: 10px">退出</a>
+              </li>
+            </ul>
+            {% endif %}
+            <ul class="nav navbar-nav collapsed-color">
 
-            <li class="step3 {% if step == 3 %}active{% else %}{% if step == 4 %}previous{% else %}{% if step > 3 %}visited{% else %}disabled{% endif %}{% endif %}{% endif %} ">
-                {% if step == 4 %}
-                    <a href="{% url 'checkout:payment-details' %}">
-                        <span class="visible-inline-sm icon-chevron-right"></span>
-                        <span>
-                            {% trans "3. Payment" %}
-                        </span>
-                    </a>
-                {% else %}
-                    <span class="navbar-text">
-                        {%  trans "3. Payment" %}
-                    </span>
-                {% endif %}
-            </li>
+              <li class="active">
+                <a href="/">主页</a>
+              </li>
+              <li>
+                <a href="/accounts/login">关于我们</a>
+              </li>
+              <li>
+                <a href="/catalogue">菜单</a>
+              </li>
+              <li>
+                <a href="#gallery" class="scroll">相册</a>
+              </li>
+              <li>
+                <a href="#feedback" class="scroll">联系我们</a>
+              </li>
+            </ul>
+          </div>
+          <!-- .navbar-collapse -->
+        </nav>
+      </div>
+</header>
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-center form-dialog">
+      <div class="modal-content text-center">
+          <!--
+        <div class="modal-header" style="background-image: url(img/parallax-bg.jpg)">
+          Flexy
+        </div>-->
+        <div class="modal-body">
+          <h3>登录享受 <span>豪华盛宴</span></h3>
+          <span class="subtitle">请输入用户名及密码完成登录</span>
 
-            <li class="step4 {% if step == 4 %}active{% else %}disabled{% endif %} ">
-                <span class="navbar-text">
-                    {% trans "4. Preview" %}
-                </span>
-            </li>
+          <form method="post" id="login_form" action="/accounts/login/" class="contact-form form-validate4">
+              {% csrf_token %}
+            <div class="form-group">
+              <input class="form-control input-lg" type="email" id="id_login-username" name="login-username" placeholder="登录邮箱" required autocomplete="off">
+            </div>
+            <div class="form-group">
+              <input type="password" name="login-password" id="id_login-password" class="form-control" placeholder="密码" required autocomplete="off">
+            </div>
 
-            <li class="step5 {% if step == 5 %}active{% else %}disabled{% endif %} ">
-                <span class="navbar-text">
-                    {% trans "5. Confirmation" %}
-                </span>
-            </li>
-        {% endspaceless %}
-    </ul><!-- /navbar-inner -->
-</div><!-- /navbar -->
+            <input class="btn btn-md btn-primary btn-center" name="login_submit" type="submit" data-loading-text="正在登陆..." value="登录">
+          </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+    <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-center form-dialog">
+      <div class="modal-content text-center">
+          <!--
+        <div class="modal-header" style="background-image: url(img/parallax-bg.jpg)">
+          如食说
+        </div>-->
+        <div class="modal-body">
+          <h3>注册享受<span>豪华盛宴</span></h3>
+          <span class="subtitle">请输入真实可用邮箱,您的邮箱将作为您的账号,并接受找回密码和订单收据等邮件</span>
+          <form id="register_form" action="/accounts/login/" method="post" class="contact-form form-validate3">
+              {% csrf_token %}
+            <div class="form-group">
+              <input class="form-control input-lg" id="id_registration-email" name="registration-email" type="email" placeholder="邮箱" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <input type="password" name="registration-password1" id="id_registration-password1" class="form-control" placeholder="密码" required autocomplete="off">
+            </div>
+              <div class="form-group">
+              <input type="password" name="registration-password2" id="id_registration-password2" class="form-control" placeholder="确认密码" required autocomplete="off">
+            </div>
+
+            <input class="btn btn-md btn-primary btn-center" name="registration_submit" type="submit"  data-loading-text="正在注册..." value="注册">
+          </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>

@@ -9,8 +9,42 @@
     {% include 'checkout/nav.html' with step=3 %}
 {% endblock %}
 
-{% block checkout_title %}{% trans "Enter payment details" %}{% endblock %}
 
+{% block checkout_title %}
+    <div class="container">
+            <div class="row bs-wizard" style="border-bottom:0;">
+
+                <div class="col-xs-3 bs-wizard-step complete">
+                  <div class="text-center bs-wizard-stepnum">送货地址</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="/checkout/shipping-address/" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"></div>
+                </div>
+
+                <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">选择支付方式</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center">您只需在此页面选择付款方式,我们并不会真正收取您的费用,您仍可以在下一界面
+                  修改您的订单。您将在确认订单后最终付款。</div>
+                </div>
+
+                <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">确认订单</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"></div>
+                </div>
+
+                <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+                  <div class="text-center bs-wizard-stepnum">确认支付</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"></div>
+                </div>
+            </div>
+	</div>
+{% endblock %}
 {% block order_contents %}{% endblock %}
 {% block shipping_address %}{% endblock %}
 {% block shipping_method %}{% endblock %}

@@ -70,7 +70,7 @@
         </script>
 {# Page meta-data - this is populated by the 'metadata' template context processor #}
 <!-- {% trans "Version:" %} {{ version }} -->
-{% if "dashboard" not in request.get_full_path and "basket" not in request.get_full_path %}
+{% if "dashboard" not in request.get_full_path and "basket" not in request.get_full_path and "checkout" not in request.get_full_path %}
     <div class="side-cart group animated">
         <div class="toggle">
             <i class="fa fa-shopping-cart"></i>

@@ -14,7 +14,6 @@
 {% endblock %}
 
 {% block content %}
-
     {% if error %}
         <div class="alert alert-danger">
             {{ error }}
@@ -25,16 +24,16 @@
         {% block shipping_address %}
             <div class="col-sm-6">
                 <div class="sub-header">
-                    <h2>{% trans "Shipping" %}</h2>
+                    <h3 class="page-header">送餐信息</h3>
                 </div>
                 {% if shipping_address %}
-                    <div class="well well-info">
+                    <div>
                         {% block shipping_address_actions %}
                             <a href="{% url 'checkout:shipping-address' %}" class="pull-right">
                                 {% trans "Change" %}
                             </a>
                         {% endblock %}
-                        <h3>{% trans "Address" %}</h3>
+                        <h4>{% trans "Address" %}</h4>
                         <address>
                             {% for field in shipping_address.active_address_fields %}
                                 {{ field }}<br/>
@@ -57,23 +56,6 @@
                         {% endif %}
                     </div>
                 {% endif %}
-
-                {% if shipping_method %}
-                    <div class="well well-info">
-                        {% block shipping_method_actions %}
-                            <a href="{% url 'checkout:shipping-method' %}" class="pull-right">
-                                {% trans "Change" %}
-                            </a>
-                        {% endblock %}
-                        <h3>{% trans "Shipping method" %}</h3>
-                        <p>{{ shipping_method.name }}
-                            {% if shipping_method.description %}
-                                - {{ shipping_method.description|safe }}
-                            {% endif %}
-                        </p>
-
-                    </div>
-                {% endif %}
             </div>
         {% endblock shipping_address %}
 
@@ -81,13 +63,13 @@
         {% block payment_method %}
             <div class="col-sm-6">
                 <div class="sub-header">
-                    <h2>{% trans "Payment" %}</h2>
+                    <h3 class="page-header">付款方式</h3>
                 </div>
-                <div class="well well-success">
+                <div>
                     <a href="{% url 'checkout:payment-details' %}" class="pull-right">
                         {% trans "Change" %}
                     </a>
-                    <h3>{% trans "Payment" %}</h3>
+                    <h4>{% trans "Payment" %}</h4>
                     <p>{% trans "Payment details to go here" %}</p>
                 </div>
             </div>
@@ -95,63 +77,100 @@
     </div>
 
     {% block order_contents %}
-        <div class="sub-header">
-            {% block order_contents_actions %}
-                <a href="{% url 'basket:summary' %}" class="pull-right">
-                    {% trans "Edit order contents" %}
-                </a>
-            {% endblock %}
-
-            <h2>{% trans "Order contents" %}</h2>
-        </div>
-        <div class="basket-title">
-            <div class="row">
-                <p class="col-sm-9 h4">{% trans "Item" %}</p>
-                <p class="col-sm-1 h4 align-center">{% trans "Quantity" %}</p>
-                <p class="col-sm-2 h4 align-right">{% trans "Total" %}</p>
-            </div>
-        </div>
-        {% for line in basket.all_lines %}
-            {% purchase_info_for_line request line as session %}
-            <div class="basket-items">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="image_container">
-                            {% with image=line.product.primary_image %}
-                                {% thumbnail image.original "100x100" upscale=False as thumb %}
-                                <a href="{{ form.instance.product.get_absolute_url }}"><img class="thumbnail" src="{{ thumb.url }}" alt="{{ product.get_title }}"></a>
-                                {% endthumbnail %}
-                            {% endwith %}
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <h3><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></h3>
-                        <span class="availability {{ session.availability.code }}">{{ session.availability.message }}</span>
-                    </div>
-                    <div class="col-sm-1 align-center">
-                        {{ line.quantity }}
-                    </div>
-                    <div class="col-sm-2 align-right">
-                        <p class="price_color">
-                            {% if not show_tax_separately and line.is_tax_known %}
-                                {{ line.line_price_incl_tax|currency:basket.currency }}
-                            {% else %}
-                                {{ line.line_price_excl_tax|currency:basket.currency }}
-                            {% endif %}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-
         <div class="row">
-            <div class="col-sm-6">&nbsp;</div>
-            <div class="col-sm-6">
-                <div class="sub-header">
-                    <h2>{% trans 'Totals' %}</h2>
-                </div>
-                {% include 'basket/partials/basket_totals.html' %}
+        <div class="col-sm-12">
+            <h3 class="page-header">订单详情</h3>
+            <div class="sub-header">
+                {% block order_contents_actions %}
+                    <a href="{% url 'basket:summary' %}" class="pull-right">
+                        {% trans "Edit order contents" %}
+                    </a>
+                {% endblock %}
+
             </div>
+            <div class="table-responsive margin-top margin-bottom text-center">
+                <table class="table table-bordered">
+                    <tr>
+                        <th></th>
+                        <th>数量</th>
+                        <th>单价</th>
+                        <th>总价</th>
+                    </tr>
+                    {% for line in basket.all_lines %}
+                        {% purchase_info_for_line request line as session %}
+                        <tr>
+                            <td style="vertical-align:middle">
+                                {{ form.id }}
+                                <div class="row vcenter">
+                                    <div class="col-lg-6">
+                                        {% with image=line.product.primary_image %}
+                                            {% thumbnail image.original "100x100" upscale=False as thumb %}
+                                                <a href="{{ form.instance.product.get_absolute_url }}"><img
+                                                        class="thumbnail"
+                                                        src="{{ thumb.url }}"
+                                                        alt="{{ product.get_title }}"></a>
+                                            {% endthumbnail %}
+                                        {% endwith %}
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h4 class="text-center"><a
+                                                href="{{ product.get_absolute_url }}">{{ line.description }}</a>
+                                        </h4>
+                                        <p class="text-center">
+                                            {% if session.availability.code == "instock" %}
+                                                库存 {{ session.availability.num_available }}
+                                            {% else %}
+                                                售罄
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="price_color align-right">
+                                            {{ line.quantity }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="price_color align-right">
+                                            {% if line.is_tax_known %}
+                                                ¥{{ line.unit_price_incl_tax }}
+                                            {% else %}
+                                                ¥{{ line.unit_price_excl_tax }}
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-12 vcenter">
+                                        <p class="price_color align-right">
+                                            {% if line.is_tax_known %}
+                                                ¥{{ line.line_price_incl_tax }}
+                                            {% else %}
+                                                ¥{{ line.line_price_excl_tax }}
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="sub-header">
+                <h3>{% trans 'Totals' %}</h3>
+            </div>
+            {% include 'basket/partials/basket_totals.html' %}
         </div>
 
     {% endblock order_contents %}

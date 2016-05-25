@@ -9,23 +9,57 @@
     {% include 'checkout/nav.html' with step=1 %}
 {% endblock %}
 
-{% block checkout_title %}{% trans "Shipping address" %}{% endblock %}
+{% block checkout_title %}
+    <div class="container">
+            <div class="row bs-wizard" style="border-bottom:0;">
+
+                <div class="col-xs-3 bs-wizard-step active">
+                  <div class="text-center bs-wizard-stepnum">送货地址</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center">现阶段送货地址仅限徐州市区三环路以内,如果您的地址超出三环路范围,我们将无法送达并且会给您退款。
+                  为了确保您的及时用餐,三环外的客户请勿下单。</div>
+                </div>
+
+                <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">选择支付方式</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"></div>
+                </div>
+
+                <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">确认订单</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"></div>
+                </div>
+
+                <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+                  <div class="text-center bs-wizard-stepnum">确认支付</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"></div>
+                </div>
+            </div>
+	</div>
+{% endblock %}
 
 {% block order_contents %}{% endblock %}
 
 {% block shipping_address %}
-    <div class="sub-header">
-        <h2>{% trans "Where should we ship to?" %}</h2>
-    </div>
-    {% if user.is_authenticated %}
+</div>
+    <div class="row">
+        <div class="text-center">
+            {% if user.is_authenticated %}
         {% if addresses %}
-            <h3>{% trans "An address from your address book?" %}</h3>
+            <h3 class="page-header">从地址簿挑选地址</h3>
             <div class="row">
-                <div class="choose-block col-sm-6">
+                <div class="choose-block col-sm-6 col-sm-offset-3">
                     <ul class="list-unstyled">
                         {% for address in addresses %}
                             {% block select_address_form %}
-                                <li class="well">
+                                <li>
                                     <address>
                                         {% block select_address_fields %}
                                             {% for field in address.active_address_fields %}
@@ -38,11 +72,11 @@
                                         <input type="hidden" name="action" value="ship_to" />
                                         <input type="hidden" name="address_id" value="{{ address.id }}" />
                                         {% if address.is_default_for_shipping %}
-                                            <button type="submit" class="btn btn-success btn-large ship-address" data-loading-text="{% trans 'Saving...' %}"><i class="icon-ok"></i> {% trans "Ship to your default shipping address" %}</button>
+                                            <button type="submit" class="btn btn-success btn-large ship-address"><i class="icon-ok"></i> {% trans "Ship to your default shipping address" %}</button>
                                         {% else %}
-                                            <button type="submit" class="btn btn-primary btn-large ship-address" data-loading-text="{% trans 'Saving...' %}">{% trans "Ship to this address" %}</button>
+                                            <button type="submit" class="btn btn-primary btn-large ship-address">{% trans "Ship to this address" %}</button>
                                         {% endif %}
-                                        
+
                                         <div class="btn-group address-controls">
                                             <a href="{% url 'checkout:user-address-update' pk=address.id %}" class="btn btn-default btn-sm">{% trans "Edit address" %}</a>
                                             <button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -63,20 +97,23 @@
                     </ul>
                 </div>
             </div>
-            <h3>
-                {% trans "Or a new address?" %} 
+            <h3 class="page-header">
+                或者填写一个新的地址
             </h3>
         {% endif %}
     {% endif %}
+        </div>
+    </div>
+
 
     {% block new_address_form %}
-        <div class="well">
+        <div>
             <form action="{% url 'checkout:shipping-address' %}" method="post" id="new_shipping_address" class="form form-horizontal">
                 {% csrf_token %}
                 {% include "partials/form_fields.html" with form=form style='horizontal' %}
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
-                        <button type="submit" class="btn btn-lg btn-primary" data-loading-text="{% trans 'Continuing...' %}">{% trans "Continue" %}</button>
+                        <button type="submit" class="btn btn-lg btn-primary">{% trans "Continue" %}</button>
                         {% trans "or" %} <a href="{% url 'basket:summary' %}">{% trans "return to basket" %}</a>
 
                     </div>
