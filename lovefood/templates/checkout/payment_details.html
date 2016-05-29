@@ -25,8 +25,7 @@
                   <div class="text-center bs-wizard-stepnum">选择支付方式</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">您只需在此页面选择付款方式,我们并不会真正收取您的费用,您仍可以在下一界面
-                  修改您的订单。您将在确认订单后最终付款。</div>
+                  <div class="bs-wizard-info text-center">您只需在此页面选择付款方式,我们并不会真正收取您的费用,您仍可以在下一界面修改您的订单。您将在确认订单后最终付款。</div>
                 </div>
 
                 <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
@@ -52,14 +51,7 @@
 
 {% block payment_details %}
     {% block payment_details_content %}
-        <p>{% trans "This page needs implementing within your project.  You may want to use one of Oscar's payment gateway libraries:" %}</p>
-        <ul>
-            <li><a href="https://github.com/django-oscar/django-oscar-paypal">django-oscar-paypal</a></li>
-            <li><a href="https://github.com/django-oscar/django-oscar-datacash">django-oscar-datacash</a></li>
-            <li><a href="https://github.com/django-oscar/django-oscar-gocardless">django-oscar-gocardless</a></li>
-            <li><a href="https://github.com/django-oscar/django-oscar-paymentexpress">django-oscar-paymentexpress</a></li>
-            <li><a href="https://github.com/django-oscar/django-oscar-accounts">django-oscar-accounts</a></li>
-        </ul>
+        <p>支付宝和腾讯正在审核我们的资料,在资料审核完成之前,目前仅支持现金和当面微信及支付。</p>
         <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">{% trans "Continue" %}</a>
     {% endblock payment_details_content %}
 {% endblock payment_details %}

@@ -107,7 +107,7 @@
 
 
     {% block new_address_form %}
-        <div>
+        <div class="well">
             <form action="{% url 'checkout:shipping-address' %}" method="post" id="new_shipping_address" class="form form-horizontal">
                 {% csrf_token %}
                 {% include "partials/form_fields.html" with form=form style='horizontal' %}
