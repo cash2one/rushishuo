@@ -1,66 +1,43 @@
 {% load i18n %}
 {% load staticfiles %}
-<footer class="footer">
+<footer class="footer" id="footer">
     {% block footer %}
-        <div class="footer-subscribe" style="background-image:url({% static "img/blue.jpg" %})" data-stellar-background-ratio="0.5">
-         <form class="form-validate2" method="post" action="//8guild.us3.list-manage.com/subscribe/post?u=168a366a98d3248fbc35c0b67&amp;id=8033bd0abb" name="update-subscribe-form" target="_blank" novalidate>
+        <div class="footer-subscribe" style="background-image:url({% static "img/footer.jpg" %});
+                text-align: center;" data-stellar-background-ratio="0.5">
           <div class="container">
-            <div class="subscribe-text">订阅我们来获取最新菜品</div>
-
-            <div class="form-group">
-              <input type="text" name="NAME" class="form-control" placeholder="姓名" required>
-            </div>
-
-            <div class="form-group">
-              <input type="email" name="EMAIL" class="form-control" placeholder="邮箱" required>
-            </div>
-
-            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-            <div style="position: absolute; left: -5000px;">
-              <input type="text" name="b_168a366a98d3248fbc35c0b67_8033bd0abb" tabindex="-1" value="">
-            </div>
-
-            <button type="submit" class="btn btn-white-outline">完成</button>
+            <div class="subscribe-text" style="color: green"></div>
           </div>
-        </form>
       </div>
 
       <div class="footer-content">
         <div class="container">
           <div class="row">
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4 text-center">
               <h5>关于如食说</h5>
 
-              <p>如食说 - 世界上最优秀最出色最漂亮最可爱最完美最好吃的外卖快餐店!为什么这么吊?因为我长得帅.你要问我是谁.我的名字叫杜昊阳.我长得好帅好帅好帅我长得好帅好帅好帅我长得好帅好帅好帅我长得好帅好帅好帅我长得好帅好帅好帅我长得好帅好帅好帅</p>
+              <p>如食说 - 徐州地区最专业的食品外卖企业之一，致力于为徐州市民提供优质、健康、放心的传统美食。我们在食材、配料、菜品搭配、以及烹饪过程中
+              对质量进行严格把控，力求将最完美的食品呈现在顾客门前。</p>
             </div>
 
-            <div class="col-sm-6 col-md-3">
-              <h5>我们的图片</h5>
-
-              <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=6&amp;display=random&amp;size=s&amp;layout=x&amp;source=user&amp;user=64742456@N00"></script>
-
-            </div>
-
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4 text-center">
               <h5>关注我们</h5>
 
-              <a href="#" class="footer-social"><i class="fa fa-wechat"></i>微信</a>
-              <a href="#" class="footer-social"><i class="fa fa-weibo"></i>微博</a>
+              <a href="#" class="footer-social"><i class="fa fa-wechat"></i>微信：rushishuo521</a>
+              <a href="#" class="footer-social"><i class="fa fa-weibo"></i>微博：如食说</a>
 
             </div>
 
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4 text-center">
               <h5>联系我们</h5>
 
               <address>
-                江苏省徐州市牌楼5号
                 <div>
-                  <a href="tel:1-800-123-4567">86-139-5229-7285</a>
+                  <a href="tel:1-800-123-4567">86-159-9696-2006</a>
                   <br>
-                  <a href="tel:1-800-123-4567">86-138-0521-2302</a>
+                  <a href="tel:1-800-123-4567">86-150-5200-6690</a>
                 </div>
 
-                <a href="mailto:info@yoursite.com"><i class="fa fa-envelope">&nbsp;</i>info@rushishuo.com</a>
+                <a href="mailto:rushishuo@163.com"><i class="fa fa-envelope">&nbsp;</i>rushishuo@163.com</a>
               </address>
             </div>
 
@@ -69,7 +46,7 @@
       </div>
 
       <div class="footer-copyright">
-        <span><a href="http://8guild.com/">如食说</a>&nbsp; — 版权所有,侵权必究</span>
+        <span><a href="http://www.rssfive.com/">如食说</a>&nbsp; — 版权所有,侵权必究</span>
       </div>
     {% endblock %}
 </footer>

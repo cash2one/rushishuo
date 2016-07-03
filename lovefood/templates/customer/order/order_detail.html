@@ -15,9 +15,7 @@
         <thead>
             <tr>
                 <th>{% trans 'Product' %}</th>
-                <th>{% trans 'Dispatch date' %}</th>
                 <th>{% trans 'Qty' %}</th>
-                <th>{% trans 'Line price excl. tax' %}</th>
                 <th>{% trans 'Line price incl. tax' %}</th>
                 <th></th>
             </tr>
@@ -31,20 +29,13 @@
                                 <p>
                                     <a href="{{ product.get_absolute_url }}">{{ line.description }}</a>
                                 </p>
-                                {% iffeature "reviews" %}
-                                    {% if product|is_review_permitted:user %}
-                                        <a class="btn btn-default" href="{% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id %}#addreview">{% trans 'Write a review' %}</a>
-                                    {% endif %}
-                                {% endiffeature %}
                             {% else %}
                                 <p>
                                     {{ line.description }}
                                 </p>
                             {% endif %}
                         </td>
-                        <td>{{ line.est_dispatch_date|default:"-" }}</td>
                         <td>{{ line.quantity }}</td>
-                        <td>{{ line.line_price_before_discounts_excl_tax|currency:order.currency }}</td>
                         <td>{{ line.line_price_before_discounts_incl_tax|currency:order.currency }}</td>
                         <td width="90">
                             {% if product %}

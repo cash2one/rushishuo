@@ -51,7 +51,7 @@
 
 {% block payment_details %}
     {% block payment_details_content %}
-        <p>支付宝和腾讯正在审核我们的资料,在资料审核完成之前,目前仅支持现金和当面微信及支付。</p>
+        <p>支付宝和腾讯正在审核我们的资料,在资料审核完成之前,目前仅支持当面现金及微信支付。</p>
         <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">{% trans "Continue" %}</a>
     {% endblock payment_details_content %}
 {% endblock payment_details %}
